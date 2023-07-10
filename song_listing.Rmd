@@ -1,0 +1,53 @@
+---
+title: "Song Listing"
+author: "Siddharth Thakur"
+date: "2023-01-18"
+output: html_document
+---
+```{r}
+mydata<-read.csv("C:\\Users\\SIDDHARTH THAKUR\\OneDrive\\Desktop\\SEM-6\\SIN - CSE3021\\Project\\song.csv",header=TRUE)
+head(mydata)
+```
+
+
+```{r}
+summary(mydata)
+```
+
+
+```{r}
+library(ggplot2)
+ggplot(mydata,aes(x=release_date,y=popularity,group=1))+geom_line(linetype="dashed")+geom_point()
+```
+
+
+```{r}
+xmin<-min(mydata[,5],na.rm=T)
+xmax<-max(mydata[,5],na.rm=T)
+xmin
+xmax
+ymin<-min(mydata[,18],na.rm=T)
+ymax<-max(mydata[,18],na.rm=T)
+ymin
+ymax
+plot4<-plot(mydata[,5],mydata[,18],xlab="year",ylab="Popularity",type="l",lwd=2,main="Popularity",col="pink",xlim=c(xmin,xmax),ylim=c(ymin,ymax))
+grid()
+abline(h=c(1300,1500,1600))
+abline(v=seq(xmin,xmax,7),lty=2,col="blue")
+```
+
+
+
+```{r}
+hist(mydata$popularity,xlab="Popularity",col="green",border="red")
+```
+
+
+```{r}
+library(ggplot2)
+ggplot(data=mydata,mapping = aes(x=popularity,y=duration_ms,col="red"))+geom_line()
+```
+```{r}
+library(ggplot2)
+ggplot(data=mydata,mapping = aes(x=popularity,y=release_date,col="green"))+geom_line(color="green")
+```
